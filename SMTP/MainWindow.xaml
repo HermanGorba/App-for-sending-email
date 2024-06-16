@@ -1,0 +1,91 @@
+﻿<Window x:Class="SMTP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SMTP"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinHeight" Value="30"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinHeight" Value="30"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinHeight" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Gmail:" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="gmailTextBox"/>
+
+        <TextBlock Text="Password:" Grid.Row="1" Grid.Column="0"/>
+        <PasswordBox Grid.Row="1" x:Name="passwordBlock" Margin="1,0,-1,40" Grid.RowSpan="2" Grid.Column="1"/>
+
+        <TextBlock Text="Send To:" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="recepientEmailTextBox"/>
+
+        <TextBlock Text="Subject:" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="subjectTextBox"/>
+
+        <TextBlock Text="Attachment:" Grid.Row="4" Grid.Column="0"/>
+        <Button Content="Browse" Grid.Row="4" Grid.Column="1" x:Name="attachButton"  Click="attachButton_Click"/>
+
+        <ListView Grid.Row="5" Grid.ColumnSpan="2" x:Name="attachmentListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="File Size" DisplayMemberBinding="{Binding Size}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Delete" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" x:Name="deleteButton" Click="deleteButton_Click"/>
+
+        <TextBlock Text="Message:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Height="170" x:Name="messageTextBox"/>
+
+        <TextBlock Text="Server Port:" Grid.Row="8" Grid.Column="0"/>
+        <TextBox Grid.Row="8" Grid.Column="1" x:Name="serverPortTextBox"/>
+
+        <TextBlock Text="Server Address:" Grid.Row="9" Grid.Column="0"/>
+        <TextBox Grid.Row="9" Grid.Column="1" x:Name="serverAddressTextBox"/>
+
+        <Button Content="Send" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" x:Name="sendButton"  Click="sendButton_Click"/>
+    </Grid>
+</Window>
